@@ -5,7 +5,6 @@ import { Button } from "../components/ui";
 // import { baseURL } from "../utils";
 import { BACKEND_URL } from "../config";
 import Navbar from "../components/Navbar";
-import { number } from "zod";
 import { useNavigate } from "react-router-dom";
 
 // interface RiskInputs {

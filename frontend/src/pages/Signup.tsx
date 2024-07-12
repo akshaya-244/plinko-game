@@ -5,7 +5,6 @@ import axios from "axios";
 import { SignupInput } from "../zod/zod";
 import { useEffect, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
-import { error } from "@material-tailwind/react/types/components/input";
 
 export default function Signup() {
     const [signupInputs, setSignupInputs]=useState<SignupInput>({
@@ -14,7 +13,6 @@ export default function Signup() {
         password: ""
     })
     const [ user, setUser ] = useState<TokenResponse>();
-    const [loading, setLoading] = useState(true);
     const login=useGoogleLogin({
         onSuccess: (codeResponse) => setUser(codeResponse),    
         onError: (error) =>console.log(error)
@@ -39,7 +37,6 @@ export default function Signup() {
                     })
                     // alert("You have already Signed up. Please login")
                     localStorage.setItem("token", response.data.jwt)
-                    setLoading(false)
                     navigate('/game')
                 })
                
@@ -155,7 +152,7 @@ export default function Signup() {
 
                 </div>
                 <div className="flex justify-center items-center mt-4 w-full px-4 py-2  text-white transition-colors duration-200 transform bg-black rounded-md focus:outline-none">
-                <FaGoogle /> <button onClick={login} className="ml-4">  Sign up with Google </button>
+                <FaGoogle /> <button onClick={() => login} className="ml-4">  Sign up with Google </button>
                     
                 </div>
             <div className="mt-4 text-black">

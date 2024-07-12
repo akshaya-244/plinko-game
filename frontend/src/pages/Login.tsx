@@ -15,6 +15,7 @@ export default function Login() {
         password:""
     });
     const [ user, setUser ] = useState<TokenResponse>();
+
     const   login=useGoogleLogin({
         onSuccess: (codeResponse) => setUser(codeResponse),    
         onError: (error) => console.log("Login Failed: ", error)
@@ -121,7 +122,7 @@ export default function Login() {
                     </button>
                 </div>
                 <div className="flex justify-center items-center mt-4 w-full px-4 py-2  text-white transition-colors duration-200 transform bg-black rounded-md focus:outline-none">
-                <FaGoogle /> <button onClick={login} className="ml-4">  Sign in with Google </button>
+               <button onClick={() => login} className="ml-4">  <FaGoogle />  Sign in with Google </button>
                     
                 </div>
                 
