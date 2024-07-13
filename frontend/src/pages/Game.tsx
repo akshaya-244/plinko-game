@@ -16,6 +16,7 @@ export function Game() {
   const [riskInputs, setRiskInputs] = useState(1);
   const [displayAmount, setDisplayAmount] = useState(0.0);
   const [profitLoss, setProfitLoss] = useState(0.0);
+  const [dis, setDis] = useState(false)
   const [ballManager, setBallManager] = useState<BallManager>();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   // const [loading,setLoading]=useState(true);
@@ -33,7 +34,7 @@ export function Game() {
       console.log("Hello")
       const ballManager = new BallManager(
         canvasRef.current as unknown as HTMLCanvasElement,
-        riskInputs as number
+        riskInputs as number,
       );
       setBallManager(ballManager);
     }
@@ -95,11 +96,15 @@ return (
               if (value > 0) {
                 setBetAmount(value);
               } else if (value > displayAmount) {
-                alert("Please enter a positive number");
                 e.target.value = "";
+              }
+              else{
+                setBetAmount(value)
               }
 
             }} type="number" id="number" className="shadow-sm  border border-gray-300 text-gray-900 text-sm rounded-lg font-semibold focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="0.0" required />
+           <div className={`${betAmount > displayAmount ? "text-red-500 font-bold mt-2" : 'hidden'}`}> You don't have enough money </div>
+           <div className={`${betAmount < 0 ? "text-red-500 font-bold mt-2" : 'hidden'}`}> Please enter a positive number </div>
           </div>
           <div className="mb-5">
             <label className="block mb-2 text-sm font-medium text-gray-900 text-white">Win or lose amount</label>
@@ -152,16 +157,19 @@ return (
                     }
                   });
                  
-                 
-                    setDisplayAmount(response.data.walletAmount.money.toFixed(2))
-                    setProfitLoss(response.data.profitLoss)
-                    console.log(response)
+                   
                   
                   
                   if (ballManager) {
                     ballManager.addBall(response.data.point);
+                    
                   }
-
+                  
+                  
+                  setDisplayAmount(response.data.walletAmount.money.toFixed(2))
+                  setProfitLoss(response.data.profitLoss)
+                  
+                  console.log(response)
                 }
 
               }}

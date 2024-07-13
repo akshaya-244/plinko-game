@@ -122,7 +122,7 @@ export default function Login() {
                     </button>
                 </div>
                 <div className="flex justify-center items-center mt-4 w-full px-4 py-2  text-white transition-colors duration-200 transform bg-black rounded-md focus:outline-none">
-               <button onClick={() => login} className="ml-4">  <FaGoogle />  Sign in with Google </button>
+                <FaGoogle />  <button onClick={() => login()} className="ml-4">    Sign in with Google </button>
                     
                 </div>
                 
