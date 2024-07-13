@@ -16,7 +16,6 @@ export function Game() {
   const [riskInputs, setRiskInputs] = useState(1);
   const [displayAmount, setDisplayAmount] = useState(0.0);
   const [profitLoss, setProfitLoss] = useState(0.0);
-  const [dis, setDis] = useState(false)
   const [ballManager, setBallManager] = useState<BallManager>();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   // const [loading,setLoading]=useState(true);
@@ -72,13 +71,13 @@ const removeHidden = () => {
 
 
 return (
-
-  <div className=" bg-[url('src/assets/bg-image-blue.webp')] ">
+  // bg-[url('src/assets/bg-image-blue.webp')] 
+  <div className=" bg-black h-screen ">
     <Navbar />
 
     <div className="flex justify-evenly">
 
-      <div className="bg-black flex flex-col justify-center min-w-96 mt-12  ">
+      <div className="bg-slate-800 flex flex-col justify-center min-w-96 mt-12  ">
 
 
 
