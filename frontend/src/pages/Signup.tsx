@@ -13,9 +13,10 @@ export default function Signup() {
         password: ""
     })
     const [ user, setUser ] = useState<TokenResponse>();
+    
     const login=useGoogleLogin({
         onSuccess: (codeResponse) => setUser(codeResponse),    
-        onError: (error) =>console.log(error)
+        onError: (error) => console.log(error)
         
     });
     useEffect(() => {
@@ -153,7 +154,7 @@ export default function Signup() {
                 </div>
                 <div className="flex justify-center items-center mt-4 w-full px-4 py-2  text-white transition-colors duration-200 transform bg-black rounded-md focus:outline-none">
                 <FaGoogle /> <button onClick={() => login()} className="ml-4">  Sign up with Google </button>
-                    
+                  
                 </div>
             <div className="mt-4 text-black">
                 Already have an account?{" "}
@@ -161,6 +162,7 @@ export default function Signup() {
                     <Link to='/login' className="text-purple-900 text-bold underline">Login</Link>
                 </span>
             </div>
+            <div> </div>
           
         </div>
     </div>
