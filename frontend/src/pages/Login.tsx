@@ -39,14 +39,12 @@ export default function Login() {
                         password: "*******"
                     })
                     console.log(response)
-                    if(response){
+                    
                         
                         localStorage.setItem("token",   response.data.jwt)
                         navigate('/game')
-                    }
-                    else{
-                        setShowError(true)
-                    }
+                    
+                    
                     
                 })
                
