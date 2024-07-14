@@ -15,7 +15,7 @@ export default function Login() {
         password:""
     });
     const [ user, setUser ] = useState<TokenResponse>();
-    const [showError, setShowError]=useState(false);
+    // const [showError, setShowError]=useState(false);
     const login=useGoogleLogin({
         onSuccess: (codeResponse) => setUser(codeResponse),    
         onError: (error) => {console.log("Login Failed: ", error); }
@@ -52,7 +52,7 @@ export default function Login() {
            
         }
        signinWithGoogle()
-    },[showError])
+    },[])
     async function sendRequests() {
         try{
             const response=await axios.post(`${BACKEND_URL}/api/user/login`,loginInputs )
@@ -138,9 +138,9 @@ export default function Login() {
                     <Link to='/signup' className="text-purple-700 underline">Sign up</Link>
                 </span>
             </div>
-            {showError && <div className="text-red-500 font-bold">
+            {/* {showError && <div className="text-red-500 font-bold">
                 Please Sign up
-            </div>}
+            </div>} */}
         </div>
     </div>
 </div>
