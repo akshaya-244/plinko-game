@@ -17,7 +17,7 @@ export default function Login() {
     const [ user, setUser ] = useState<TokenResponse>();
     // const [showError, setShowError]=useState(false);
     const login=useGoogleLogin({
-        onSuccess: (codeResponse) => setUser(codeResponse),    
+        onSuccess: (codeResponse) =>{ setUser(codeResponse)},    
         onError: (error) => {console.log("Login Failed: ", error); }
         
     });
@@ -26,6 +26,7 @@ export default function Login() {
         const signinWithGoogle =async () => {
             
             if(user){
+                console.log("GGGGG")
                 await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user?.access_token}`,{
                     headers: {
                         Authorization: `${user.access_token}`,
@@ -47,12 +48,13 @@ export default function Login() {
                     
                     
                 })
+              
                
             }
            
         }
        signinWithGoogle()
-    },[])
+    },[user, navigate])
     async function sendRequests() {
         try{
             const response=await axios.post(`${BACKEND_URL}/api/user/login`,loginInputs )
